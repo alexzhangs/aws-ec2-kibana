@@ -44,6 +44,9 @@ get_ec2_public_ip () {
 
 
 settings=()
+listen='private'
+port=5601
+
 while getopts s:l:o:e:h opt; do
     case $opt in
         s)
@@ -63,14 +66,6 @@ while getopts s:l:o:e:h opt; do
             ;;
     esac
 done
-
-if [[ -z $listen ]]; then
-    listen='private'
-fi
-
-if [[ -z $port ]]; then
-    port=5601
-fi
 
 # kibana settings
 

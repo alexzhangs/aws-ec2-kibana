@@ -43,6 +43,8 @@ install_yum_repo () {
 }
 
 
+package=kibana
+
 while getopts f:r:n:v:h opt; do
     case $opt in
         f)
@@ -55,7 +57,7 @@ while getopts f:r:n:v:h opt; do
             repo_name=$OPTARG
             ;;
         v)
-            version=$OPTARG
+            package=$package-$OPTARG
             ;;
         h|*)
             usage
@@ -69,12 +71,6 @@ else
     if [[ -n $repo_file ]]; then
         install_gpg_key
         install_yum_repo "$repo_file"
-    fi
-
-    if [[ -n $version ]]; then
-        package=kibana-$version
-    else
-        package=kibana
     fi
 
     if [[ -n $repo_name ]]; then
