@@ -69,7 +69,7 @@ if [[ -z $listen ]]; then
 fi
 
 if [[ -z $port ]]; then
-    port=9200
+    port=5601
 fi
 
 if [[ -z $es_url ]]; then
