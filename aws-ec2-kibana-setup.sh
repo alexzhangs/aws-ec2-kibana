@@ -27,7 +27,7 @@ usage () {
     printf "\tPort to listen on. Default port is 5601.\n\n"
 
     printf "\t[-e ELASTICSEARCH_URL]\n\n"
-    printf "\tElasticsearc URL. Default is 'http://127.0.0.1:9200'.\n\n"
+    printf "\tElasticsearc URL. Default is 'http://<listen_on_ip>:9200'.\n\n"
 
     printf "\t[-h]\n\n"
     printf "\tThis help.\n\n"
@@ -72,10 +72,6 @@ if [[ -z $port ]]; then
     port=5601
 fi
 
-if [[ -z $es_url ]]; then
-    es_url='http://127.0.0.1:9200'
-fi
-
 # kibana settings
 
 case $listen in
@@ -89,6 +85,10 @@ case $listen in
         ip='127.0.0.1'
         ;;
 esac
+
+if [[ -z $es_url ]]; then
+    es_url="http://$ip:9200"
+fi
 
 content="
 server.host: \"${ip:?}\"
