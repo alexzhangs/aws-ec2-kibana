@@ -65,22 +65,23 @@ done
 
 if [[ -n $pkg_file ]]; then
     yum install -y "$pkg_file"
-    exit
-elif [[ -n $repo_file ]]; then
-    install_gpg_key
-    install_yum_repo "$repo_file"
-fi
-
-if [[ -n $version ]]; then
-    package=kibana-$version
 else
-    package=kibana
-fi
+    if [[ -n $repo_file ]]; then
+        install_gpg_key
+        install_yum_repo "$repo_file"
+    fi
 
-if [[ -n $repo_name ]]; then
-    yum install --disablerepo=* --enablerepo=$repo_name -y "$package"
-else
-    yum install -y "$package"
+    if [[ -n $version ]]; then
+        package=kibana-$version
+    else
+        package=kibana
+    fi
+
+    if [[ -n $repo_name ]]; then
+        yum install --disablerepo=* --enablerepo=$repo_name -y "$package"
+    else
+        yum install -y "$package"
+    fi
 fi
 
 exit
