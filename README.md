@@ -9,7 +9,7 @@ sudo yum install -y git
 git clone https://github.com/alexzhangs/aws-ec2-kibana.git
 ```
 
-## Installation Kibana
+## Install Kibana
 
 Since Kibana 5.x, it requires java 1.8.
 
