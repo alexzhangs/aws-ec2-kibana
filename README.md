@@ -2,6 +2,8 @@
 
 Install Kibana on AWS EC2 instance.
 
+Tested with Kibana 5.x.
+
 ## Get code
 
 ```
